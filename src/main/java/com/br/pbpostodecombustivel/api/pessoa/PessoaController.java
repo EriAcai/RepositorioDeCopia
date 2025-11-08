@@ -1,4 +1,3 @@
-
 package com.br.pbpostodecombustivel.api.pessoa;
 
 import com.br.pbpostodecombustivel.domain.dto.PessoaRequest;
@@ -10,23 +9,16 @@ import java.util.List;
 @RequestMapping("/api/v1/pessoas")
 public class PessoaController {
 
-    private PessoaController service;
+    private final PessoaService service;
 
-    // O proprio construtor e pesquisar que porra é um construtor aqui e ver por que a porra do service e PessoaConstroller não ta sendo usado.
-
+    public PessoaController(PessoaService service) {
+        this.service = service;
+    }
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<PessoaResponse> listar() {
+    public List<PessoaResponse> listar () {
         return service.listarTodos();
     }
-
-    private List<PessoaResponse> listarTodos() {
-
-        return List.of();
-    }
-
-    // CREATE === Pesquisar que porra é um CREATE nesse contexto.
-
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public PessoaResponse create(@RequestBody PessoaRequest req) {
